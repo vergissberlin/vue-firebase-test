@@ -1,0 +1,36 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: 'Avenir', Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #2c3e50;
+}
+header{
+	display: flex;
+	padding: 20px 50px;
+	justify-content: space-between;
+	margin-bottom: 25px;
+	background: #4D8FAC;
+}
+a{
+	text-decoration: none;
+	transition: all .3s ease;
+}
+.branding a{
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.main-nav a{
+	padding: 10px 10px;
+	color: #fff;
+}
+
+[class*='-container']{
+	border: 1px solid blue;
+	max-width: 1100px;
+	margin: 0 auto;
+}
