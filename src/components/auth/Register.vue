@@ -25,7 +25,7 @@
 			signup(){
 				firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
 					.then(user => {
-						console.log('New user has been created!!');
+						this.$router.replace('home');
 					})
 					.catch(err => {
 						this.error = err.message;

@@ -3,7 +3,26 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 
 export const routes = [
-	{ path: '/', 	component: Home },
-	{ path: '/login', component: Login },
-	{ path: '/register', component: Register }
+	{ 
+		path: '*',
+		redirect: '/login' 
+	},{ 
+		path: '/',
+		redirect: '/login' 
+	},{ 
+		path: '/login',
+		name: 'Login',
+		component: Login, 
+	},{ 
+		path: '/register', 
+		name: 'Register',
+		component: Register 
+	},{
+		path: '/home',
+		name: 'Home',
+		component: Home,
+		meta: {
+			requiresAuth: true
+		}
+	}
 ];

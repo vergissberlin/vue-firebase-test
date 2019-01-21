@@ -25,12 +25,11 @@
 			login(){
 				firebase.auth().signInWithEmailAndPassword(this.email, this.password)
 					.then(user => {
-						console.log(`You're logged in!`);
+						this.$router.replace('home');
 					})
 					.catch(err => {
 						this.error = err.message
 					});
-				// this.$router.replace('home');
 			}
 		}
 	}

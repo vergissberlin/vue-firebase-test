@@ -7,6 +7,8 @@ import firebase from 'firebase'
 import './assets/style.css'
 import './firebaseConfig'
 
+let app = '';
+
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
@@ -16,7 +18,20 @@ const router = new VueRouter({
 	routes
 });
 
-new Vue({
-	router,
-	render: h => h(App),
-}).$mount('#app')
+router.beforeEach((to, from, next) => {
+	const currentUser = firebase.auth().currentUser;
+	const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+	if(requiresAuth && !currentUser) next('login');
+	else if(!requiresAuth && currentUser) next('home');
+	else next();
+})
+
+firebase.auth().onAuthStateChanged(() => {
+	if(!app){
+		app = new Vue({
+			router,
+			render: h => h(App),
+		}).$mount('#app');
+	}
+});
